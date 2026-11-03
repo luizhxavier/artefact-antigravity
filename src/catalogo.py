@@ -18,12 +18,12 @@ categorias = pd.read_csv(
     DATA_DIR / "desafio_tecnico_ai_eng - categories.csv"
 )
 
-# Renomeia a coluna para evitar conflito com "name" dos produtos
+# Renomeia a coluna para evitar conflito com o nome dos produtos
 categorias = categorias.rename(
     columns={"name": "category_name"}
 )
 
-# Relaciona os produtos com suas categorias
+# Relaciona os produtos às suas respectivas categorias
 catalogo = produtos.merge(
     categorias[["category_id", "category_name"]],
     on="category_id",
@@ -71,10 +71,13 @@ def normalizar_categoria(categoria: str) -> str:
 
 
 # =========================================================
-# 4. BUSCA DE PRODUTOS
+# 4. FUNÇÃO DE BUSCA DE PRODUTOS
 # =========================================================
 
-def buscar_produtos(categoria: str, preco_maximo: float) -> pd.DataFrame:
+def buscar_produtos(
+    categoria: str,
+    preco_maximo: float
+) -> pd.DataFrame:
     """Busca produtos ativos, em estoque e dentro do orçamento."""
 
     categoria_buscada = normalizar_categoria(categoria)
@@ -100,39 +103,3 @@ def buscar_produtos(categoria: str, preco_maximo: float) -> pd.DataFrame:
     return resultado
 
 
-# =========================================================
-# 5. TESTES DA FUNÇÃO
-# =========================================================
-
-if __name__ == "__main__":
-
-    print("CATEGORIAS:")
-    print(categorias[["category_id", "category_name"]])
-
-    print("\nSTATUS DOS PRODUTOS:")
-    print(produtos["status"].value_counts())
-
-    categorias_teste = [
-        "Violões",
-        "violoes",
-        "violão",
-        "violao",
-    ]
-
-    for categoria in categorias_teste:
-        resultado = buscar_produtos(categoria, 1000)
-
-        print(
-            f"Busca: {categoria} | "
-            f"Produtos encontrados: {len(resultado)}"
-        )
-
-    print("\nVIOLÕES DISPONÍVEIS ATÉ R$ 1.000:")
-
-    resultado = buscar_produtos("violão", 1000)
-
-    print(
-        resultado[
-            ["name", "category_name", "price_brl", "stock_quantity"]
-        ].to_string(index=False)
-    )
