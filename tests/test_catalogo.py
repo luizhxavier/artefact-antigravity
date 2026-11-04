@@ -51,3 +51,23 @@ def test_categoria_inexistente():
     resultado = buscar_produtos("Saxofones invisíveis", 1000)
 
     assert resultado.empty
+
+
+def test_normalizacao_ukuleles():
+
+    resultado_singular = buscar_produtos(
+        "ukulele",
+        preco_maximo=10000
+    )
+
+    resultado_plural = buscar_produtos(
+        "ukuleles",
+        preco_maximo=10000
+    )
+
+    # As duas formas devem encontrar os mesmos produtos
+    assert not resultado_singular.empty
+
+    assert resultado_singular["product_id"].tolist() == (
+        resultado_plural["product_id"].tolist()
+    )

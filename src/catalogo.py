@@ -54,12 +54,14 @@ def normalizar_texto(texto: str) -> str:
 # 3. NORMALIZAÇÃO DE CATEGORIAS
 # =========================================================
 
+
 def normalizar_categoria(categoria: str) -> str:
-    """Converte variações de nomes para uma categoria padrão."""
 
     aliases = {
         "violao": "violoes",
         "violoes": "violoes",
+        "ukulele": "ukuleles",
+        "ukuleles": "ukuleles"
     }
 
     categoria_normalizada = normalizar_texto(categoria)
@@ -68,6 +70,7 @@ def normalizar_categoria(categoria: str) -> str:
         categoria_normalizada,
         categoria_normalizada
     )
+
 
 
 # =========================================================
