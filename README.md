@@ -28,8 +28,10 @@ Gemini then generates a customer-facing response using the retrieved information
 
 ### 1. Language Model
 
-**Provider:** Google Gemini  
-**Conversational model:** `gemini-3.5-flash-lite`  
+**Provider:** Google Gemini  
+
+**Conversational model:** `gemini-3.5-flash-lite`  
+
 **Python SDK:** `google-genai`
 
 The conversational model is responsible for:
@@ -65,7 +67,8 @@ The Gemini model receives the calculated prices instead of performing financial 
 
 ### 3. Retrieval-Augmented Generation (RAG)
 
-**Technologies:** PyMuPDF, Gemini Embeddings, Scikit-learn  
+**Technologies:** PyMuPDF, Gemini Embeddings, Scikit-learn  
+
 **Embedding model:** `gemini-embedding-001`
 
 The retrieval pipeline follows these steps:
@@ -129,7 +132,7 @@ The architecture follows three main principles:
 - Python 3.12
 - An internet connection for Gemini API requests
 - A Google Gemini API key
-- Access to the challenge datasets and policy PDF
+- Challenge datasets and policy PDF (included in this repository)
 
 ### 1. Clone the Repository
 
@@ -194,7 +197,9 @@ If `DEMO_CUSTOMER_ID` is not configured, the order lookup tool is disabled. Prod
 
 ## Required Data Files
 
-The application expects the following files inside the `data/` directory:
+The project includes the datasets and policy manual provided for the Artefact technical challenge.
+
+All files are available in the `data/` directory:
 
 ```text
 data/
@@ -207,11 +212,11 @@ data/
 └── politicas_da_loja.pdf
 ```
 
-These files are not included in the public Git repository because the datasets contain customer information and the policy document is designated for internal use.
+The datasets represent a fictional musical instrument store and are used for product searches, pricing, promotions, order consultations, and policy retrieval.
 
-They must be obtained from an authorized source and placed in the `data/` directory with the filenames shown above.
+No additional data downloads are required to run the project.
 
-**Current reproducibility limitation:** Without these input files, the application and its data-dependent tests cannot run. A synthetic demonstration dataset is not yet provided.
+To run the agent, create a `.env` file with your own Gemini API key. Set `DEMO_CUSTOMER_ID` only if you want to test order lookup.
 
 ## Running the Agent
 
@@ -227,7 +232,6 @@ The application starts an interactive command-line interface:
 === EMPÓRIO DA MÚSICA ===
 Assistente virtual iniciado!
 Digite 'sair' para encerrar.
-
 Você:
 ```
 
@@ -287,7 +291,7 @@ The current implementation covers the main customer service scenarios, but there
 - The RAG pipeline uses page-based chunking, which can sometimes retrieve irrelevant content.
 - Conversation history is not persisted between sessions.
 - The application currently runs through a terminal interface.
-- The original datasets are required to run the project locally.
+- Data is loaded from static CSV snapshots rather than a live store database.
 
 With more time, I would focus on improving the retrieval strategy, expanding the test scenarios, and adding conversation persistence.
 
