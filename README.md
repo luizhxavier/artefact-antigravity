@@ -137,7 +137,7 @@ The architecture follows three main principles:
 ### 1. Clone the Repository
 
 ```bash
-git clone <REPOSITORY_URL>
+git clone https://github.com/luizhxavier/artefact-antigravity.git
 cd artefact-antigravity
 ```
 
