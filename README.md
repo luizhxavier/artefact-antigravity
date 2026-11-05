@@ -141,8 +141,6 @@ git clone https://github.com/luizhxavier/artefact-antigravity.git
 cd artefact-antigravity
 ```
 
-Replace `<REPOSITORY_URL>` with the actual GitHub repository URL after publication.
-
 ### 2. Create a Virtual Environment
 
 On Windows PowerShell:
