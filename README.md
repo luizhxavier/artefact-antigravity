@@ -177,8 +177,6 @@ Create a `.env` file in the project root:
 GEMINI_API_KEY=your_gemini_api_key_here
 ```
 
-The `.env` file is excluded from Git and must not be committed.
-
 ### Demonstration Customer Session
 
 For local order-lookup demonstrations, an optional simulated customer identity can be configured:
